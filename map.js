@@ -99,6 +99,8 @@ function selectGaodePoint(pointIndex) {
   iframe.title='高德地图：'+point.name;
   document.querySelector('#selectedPointName').textContent=point.name;
   document.querySelector('#openGaodePlace').href=gaodePlaceUrl(point);
+  document.querySelector('#copyPlaceAddress').dataset.address=point.name+(point.amap?.address?'，'+point.amap.address:'');
+  document.querySelector('#copyAddressStatus').textContent='';
   document.querySelectorAll('.point-chip').forEach((button,index)=>button.setAttribute('aria-pressed',index===pointIndex?'true':'false'));
 }
 
