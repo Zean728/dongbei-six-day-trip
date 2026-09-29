@@ -32,11 +32,6 @@
 .navigation-actions a:hover,.navigation-actions button:hover{background:#c7672c;border-color:#c7672c}
 .copy-address-status{margin:6px 0 0;color:#205b5d;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
 .navigation-help{margin:7px 0 0;font-size:12px;color:#6c7980;line-height:1.5}
-.journey-legs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
-.journey-legs>div{display:flex;flex-direction:column;gap:2px;min-width:0;padding:10px 12px;border:1px solid #dbe5e1;border-radius:10px;background:#f7faf8}
-.journey-legs b{color:#bf6b38;font-size:11px;letter-spacing:.08em}
-.journey-legs span{font-size:13px;font-weight:800;color:#1f4147}
-.journey-legs small{font-size:11px;color:#687b7c}
 .weather-block{padding:20px 32px 19px;background:#f6fbf9;border-bottom:1px solid #d9e8e3}
 .weather-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
 .weather-title span{display:block;color:#24766a;font-size:11px;font-weight:800;letter-spacing:.13em}
@@ -85,4 +80,4 @@
 .place-link{padding:0;border:0;background:none;cursor:pointer;font-family:inherit;text-align:left}
 .overview-day-link{display:flex;align-items:center;justify-content:space-between;width:100%;padding:8px 0;border:0;border-bottom:1px solid var(--line);background:none;color:#205b5d;font-size:14px;text-align:left;cursor:pointer}
 .overview-day-link:hover{text-decoration:underline}
-@media(max-width:760px){.day-content{scroll-margin-top:12px}.daily-map-block{padding:19px 18px 16px}.daily-real-map,.gaode-map-frame{height:310px}.daily-map-heading h4{font-size:18px}.map-reset{font-size:12px;padding:6px 9px}.navigation-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.navigation-actions a,.navigation-actions button{width:100%;min-height:48px;padding:10px 8px}.journey-legs{grid-template-columns:1fr}.journey-legs>div{display:grid;grid-template-columns:26px 1fr auto;align-items:center}.weather-block{padding:18px}.weather-grid{grid-template-columns:1fr}.weather-title h4{font-size:18px}.adventure-card{margin:0 18px 20px;padding:18px}.adventure-card h4{font-size:19px}.adventure-steps>div{grid-template-columns:82px 1fr;gap:8px;font-size:13px}}
+@media(max-width:760px){.day-content{scroll-margin-top:12px}.daily-map-block{padding:19px 18px 16px}.daily-real-map,.gaode-map-frame{height:310px}.daily-map-heading h4{font-size:18px}.map-reset{font-size:12px;padding:6px 9px}.navigation-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.navigation-actions a,.navigation-actions button{width:100%;min-height:48px;padding:10px 8px}.weather-block{padding:18px}.weather-grid{grid-template-columns:1fr}.weather-title h4{font-size:18px}.adventure-card{margin:0 18px 20px;padding:18px}.adventure-card h4{font-size:19px}.adventure-steps>div{grid-template-columns:82px 1fr;gap:8px;font-size:13px}}
