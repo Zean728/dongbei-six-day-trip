@@ -36,16 +36,17 @@ const days = [
     stay:'长白山璞宣酒店 · 松江河镇（10.03–10.05，第一晚）', food:'十里辣拌花蟹；晚餐酒店周边自选', tip:'酒店不在二道白河。民俗园拍摄结束后需另开往松江河；若 17:00 后出发，应直接赶往酒店，不安排小镇散步。'
   },
   {
-    date:'10.04', week:'周日', city:'松江河 ↔ 九溪听泉', title:'去九溪听泉漂流，傍晚返回酒店', desc:'九溪听泉靠近北坡；从松江河往返需跨越两侧，今天以漂流为主。',
+    date:'10.04', week:'周日', city:'松江河 · 池南 · 万达', title:'古城秋色、湖边散步与汉拿山温泉', desc:'留在松江河及池南一带玩，不跨去北坡；下午和晚上集中在万达度假区。',
     stops:[
-      ['07:30','从璞宣酒店出发','松江河到九溪听泉需跨到北坡一侧，不能沿用原先“二道白河半小时到达”的安排；导航以当天路况为准。','长白山璞宣酒店'],
-      ['上午','九溪听泉 · 森林漫步','到达后先确认漂流批次、装备和寄存安排，再走溪谷与栈道。','长白山九溪听泉景区'],
-      ['按预约','九溪听泉漂流','体验约 40 分钟，连同排队、更衣预留 1.5–2 小时；带防水袋和替换衣物。','长白山九溪听泉漂流'],
-      ['漂流后','附近午餐 + 换衣','在北坡一侧吃热饭、换干衣服，再决定是否加逛。','二道白河 朝鲜族汤饭'],
-      ['若有时间','美人松空中廊桥公园 · 可选','若漂流结束早、体力够，可顺路去二道白河走走；结束晚就直接返程。','二道白河美人松空中廊桥公园'],
-      ['傍晚','返回璞宣酒店','回松江河镇晚餐并休息；第二天仍要再赴北坡。','长白山璞宣酒店']
+      ['09:00','从璞宣酒店出发','早餐后沿池南方向自驾；国庆道路与停车情况以当天地图为准。','长白山璞宣酒店'],
+      ['10:00','讷殷古城 · 秋色与满族文化','看古城、三江交汇与博物馆，建议留约 2 小时；如想睡懒觉，可跳过此站，直接去万达度假区。','讷殷古城'],
+      ['12:30','午餐 · 漫江或万达度假区','以现场营业的餐馆为准；不为吃饭专程绕远。','长白山万达国际度假区'],
+      ['14:00','佛库伦湖 + 度假小镇','在万达度假区湖边拍秋景、逛小镇；天气好再考虑园内其他开放项目。','佛库伦湖'],
+      ['16:00','汉拿山温泉','预留约 2 小时泡汤、更衣；四人提前确认 10 月 4 日营业时段、票价及是否需预约，带泳衣。','长白山汉拿山温泉'],
+      ['18:30','度假区晚餐','温泉结束后就近吃饭，国庆餐馆可能排队。','长白山万达国际度假区'],
+      ['20:00','返回璞宣酒店休息','次日按北坡门票检票时间退房、转住二道白河，今晚早点休息。','长白山璞宣酒店']
     ],
-    stay:'长白山璞宣酒店 · 松江河镇（第二晚）', food:'漂流后吃热汤饭；晚餐松江河镇自选', tip:'九溪听泉漂流曾在 9 月 7—18 日因河道升级暂停，10 月 4 日复运情况需确认。酒店与景区分处西坡、北坡方向，往返交通会占用较多时间。'
+    stay:'长白山璞宣酒店 · 松江河镇（第二晚）', food:'漫江或万达午餐；晚餐度假区自选', tip:'汉拿山温泉在万达国际度假区白云路 455 号。历史资料标注 12:00–22:00，但国庆当天时段与门票请向温泉确认；泡汤后注意补水。'
   },
   {
     date:'10.05', week:'周一', city:'松江河 → 北坡', title:'退房转住北坡，按门票时段上山', desc:'早上从璞宣酒店带行李出发，晚上住北坡集散中心云顶市集亚朵酒店，不再折返松江河。',
@@ -78,7 +79,7 @@ const nav = document.querySelector('#dayNav');
 const content = document.querySelector('#dayContent');
 const escapeHtml = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 days.forEach((d,i)=>{
-  const button=document.createElement('button');button.className='day-tab';button.type='button';button.setAttribute('role','tab');button.innerHTML=`<b>D${i+1} · ${d.date}</b><span>${d.week} ${d.city}</span>`;button.addEventListener('click',()=>selectDay(i));nav.appendChild(button);
+  const button=document.createElement('button');button.className='day-tab';button.type='button';button.setAttribute('role','tab');button.innerHTML=`<b>D${i+1} · ${d.date}</b><span>${d.week} ${d.city}</span>`;button.addEventListener('click',()=>{selectDay(i);if(window.matchMedia('(max-width:760px)').matches)content.scrollIntoView({behavior:'smooth',block:'start'})});nav.appendChild(button);
 });
 nav.setAttribute('role','tablist');
 function selectDay(i){
@@ -88,21 +89,13 @@ function selectDay(i){
   const pointButtons=dayMapPoints[i].map((point,index)=>`<button type="button" data-map-point="${index}" class="point-chip" aria-pressed="false"><b>${index+1}</b>${escapeHtml(point.name)}</button>`).join('');
   const adventureHtml=i===5?`<section class="adventure-card" aria-label="D6 军舰山南坪镇绕行方案"><div class="adventure-label">OPTION B · 特种兵可选</div><h4>军舰山 → 南坪镇 → 延吉机场</h4><p>建议 <strong>05:30 起床、06:00 从云顶市集亚朵出发</strong>。高德当前基准：酒店→军舰山 132.1 公里 / 2 小时 23 分，军舰山→南坪镇 39.4 公里 / 44 分，南坪镇→延吉机场 114.8 公里 / 1 小时 44 分。三段纯驾驶约 4 小时 51 分、共 286.3 公里；国庆路况、停车和机场门店交车时间另算。相比酒店直返机场基准 1 小时 41 分，绕行多约 3 小时 10 分车程。</p><div class="adventure-steps"><div><time>05:30</time><span>起床、退房，检查油量、证件和实时路况。</span></div><div><time>06:00</time><span>离开云顶市集亚朵；驾驶员须睡足，清晨山路放慢车速。</span></div><div><time>08:25–08:45</time><span>军舰山短停看景，以可通行道路和正规停车位置为准。<button type="button" data-map-point="1">地图定位 ↗</button></span></div><div><time>09:30–09:45</time><span>南坪镇短停，边境区域按现场标识通行和拍摄。<button type="button" data-map-point="2">地图定位 ↗</button></span></div><div><time>11:30 目标</time><span>到延吉机场租车门店；最晚 12:00 应抵达机场区域。<button type="button" data-map-point="3">地图定位 ↗</button></span></div><div><time>13:00</time><span>完成还车；17:45 航班，留足值机和安检时间。</span></div></div><div class="adventure-cutoff"><strong>撤退线</strong>：06:30 仍未发车、09:00 仍未离开军舰山、10:00 仍未离开南坪，或高德预报到机场晚于 12:00，就停止下一站打卡，直奔机场。天气差、道路管制或司机疲劳时，改用上面的直返方案。</div></section>`:'';
   const mapRouteNote=i===5?'D6 虚线表示可选冲刺绕行，直返请用高德实时驾车导航。':'';
-  content.innerHTML=`<div class="day-head"><div><small>DAY ${String(i+1).padStart(2,'0')} / ${d.date} ${d.week}</small><h3>${escapeHtml(d.title)}</h3><p>${escapeHtml(d.desc)}</p></div><span class="city-badge">${escapeHtml(d.city)}</span></div><section id="weatherBlock" class="weather-block" aria-label="目的地天气"></section><div class="daily-map-block" id="daily-map-block"><div class="daily-map-heading"><div><span>当日实际地图</span><h4>高德地图直接看地点</h4></div><button type="button" id="mapReset" class="map-reset" hidden>查看全部地点</button></div><div class="map-mode-toggle" role="group" aria-label="地图显示方式"><button type="button" data-map-mode="gaode" aria-pressed="true">高德定位</button><button type="button" data-map-mode="overview" aria-pressed="false">当天总览</button></div><div id="gaodeMapWrap"><p class="gaode-current">当前地点：<strong id="selectedPointName"></strong></p><iframe id="gaodeFrame" class="gaode-map-frame" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="高德地点地图"></iframe><div class="navigation-actions"><a id="driveNavigation" class="navigation-primary">高德 App 直接导航 ↗</a><a id="routePreview" class="navigation-secondary" target="_blank" rel="noopener">驾车路线预览 ↗</a><a id="walkNavigation" class="navigation-secondary" target="_blank" rel="noopener">步行路线 ↗</a><a id="didiRide" class="navigation-didi" href="diditaxi://">尝试打开滴滴 App ↗</a><a id="didiWeb" class="navigation-didi-web" href="https://webapp.didi.cn/" target="_blank" rel="noopener">滴滴网页版备用 ↗</a></div><p class="navigation-help">高德导航以手机当前位置为起点。滴滴按钮会尝试唤起已安装的 App，并复制所选目的地；若被内置浏览器拦截，请用系统浏览器打开本页或点网页版备用。叫车仍需在滴滴中确认上车点和订单。</p><p id="didiStatus" class="didi-status" role="status"></p></div><div id="dayMap" class="daily-real-map" aria-label="${escapeHtml(d.date)} ${escapeHtml(d.city)}当天地点总览" hidden></div><p id="dayMapStatus" class="map-load-status" role="status" hidden>地图加载中…</p><div class="map-point-list">${pointButtons}</div><p class="map-disclaimer">点击地点可在上方高德地图定位；“当天总览”显示全部标点，虚线仅表示站点顺序，不是驾车路线。${mapRouteNote}未选定门店的餐馆与租车点暂不落点。</p></div><div class="day-body"><div class="timeline">${d.stops.map((s,j)=>{const point=pointForStop(i,j);return `<article class="stop"><time>${escapeHtml(s[0])}</time><div><h4>${escapeHtml(s[1])}</h4><p>${escapeHtml(s[2])}</p>${point?`<button class="place-link" type="button" data-map-stop="${j}">在上方高德地图定位 ↑</button>`:''}</div></article>`}).join('')}</div><aside class="day-side"><div class="side-card"><span>WHERE TO STAY</span><h4>今晚住哪</h4><p>${escapeHtml(d.stay)}</p></div><div class="side-card"><span>WHAT TO EAT</span><h4>今天吃什么</h4><p>${escapeHtml(d.food)}</p></div><div class="tip"><strong>行程提醒</strong><p>${escapeHtml(d.tip)}</p></div></aside></div>${adventureHtml}`;
+  content.innerHTML=`<div class="day-head"><div><small>DAY ${String(i+1).padStart(2,'0')} / ${d.date} ${d.week}</small><h3>${escapeHtml(d.title)}</h3><p>${escapeHtml(d.desc)}</p></div><span class="city-badge">${escapeHtml(d.city)}</span></div><section id="weatherBlock" class="weather-block" aria-label="目的地天气"></section><div class="daily-map-block" id="daily-map-block"><div class="daily-map-heading"><div><span>当日实际地图</span><h4>高德地图直接看地点</h4></div><button type="button" id="mapReset" class="map-reset" hidden>查看全部地点</button></div><div class="map-mode-toggle" role="group" aria-label="地图显示方式"><button type="button" data-map-mode="gaode" aria-pressed="true">高德定位</button><button type="button" data-map-mode="overview" aria-pressed="false">当天总览</button></div><div id="gaodeMapWrap"><p class="gaode-current">当前地点：<strong id="selectedPointName"></strong></p><iframe id="gaodeFrame" class="gaode-map-frame" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="高德地点地图"></iframe><div class="navigation-actions"><a id="openGaodePlace" class="navigation-primary" target="_blank" rel="noopener">打开高德目的地 ↗</a></div><p class="navigation-help">在高德地点页自行选择驾车或步行。手机浏览器会尝试打开高德 App；若被内置浏览器拦截，可在系统浏览器打开本页。</p></div><div id="dayMap" class="daily-real-map" aria-label="${escapeHtml(d.date)} ${escapeHtml(d.city)}当天地点总览" hidden></div><p id="dayMapStatus" class="map-load-status" role="status" hidden>地图加载中…</p><div class="map-point-list">${pointButtons}</div><p class="map-disclaimer">点击地点可在上方高德地图定位；“当天总览”显示全部标点，虚线仅表示站点顺序，不是驾车路线。${mapRouteNote}未选定门店的餐馆与租车点暂不落点。</p></div><div class="day-body"><div class="timeline">${d.stops.map((s,j)=>{const point=pointForStop(i,j);return `<article class="stop"><time>${escapeHtml(s[0])}</time><div><h4>${escapeHtml(s[1])}</h4><p>${escapeHtml(s[2])}</p>${point?`<button class="place-link" type="button" data-map-stop="${j}">在上方高德地图定位 ↑</button>`:''}</div></article>`}).join('')}</div><aside class="day-side"><div class="side-card"><span>WHERE TO STAY</span><h4>今晚住哪</h4><p>${escapeHtml(d.stay)}</p></div><div class="side-card"><span>WHAT TO EAT</span><h4>今天吃什么</h4><p>${escapeHtml(d.food)}</p></div><div class="tip"><strong>行程提醒</strong><p>${escapeHtml(d.tip)}</p></div></aside></div>${adventureHtml}`;
   renderDayWeather(i);
   activeMapMode='gaode';
   selectGaodePoint(defaultPointIndex[i]);
 }
 content.addEventListener('click',event=>{
   if(event.target.closest('#weatherRefresh')){refreshWeather();return}
-  const didiLink=event.target.closest('#didiRide,#didiWeb');
-  if(didiLink){
-    const destination=didiLink.dataset.destination;
-    const status=document.querySelector('#didiStatus');
-    if(navigator.clipboard?.writeText) navigator.clipboard.writeText(destination).then(()=>{status.textContent='目的地已复制：'+destination+'；打开滴滴后粘贴并确认订单。'}).catch(()=>{status.textContent='请在滴滴中搜索目的地：'+destination;});
-    else status.textContent='请在滴滴中搜索目的地：'+destination;
-    return;
-  }
   const modeButton=event.target.closest('[data-map-mode]');
   if(modeButton){showMapMode(modeButton.dataset.mapMode);return}
   const pointButton=event.target.closest('[data-map-point]');
@@ -114,4 +107,4 @@ nav.addEventListener('keydown',e=>{let i=[...nav.children].findIndex(b=>b.getAtt
 selectDay(0);
 
 const linkRoot=document.querySelector('#mapLinks');
-days.forEach((day,index)=>{const button=document.createElement('button');button.type='button';button.className='overview-day-link';button.innerHTML=`<span>D${index+1} · ${escapeHtml(day.city)}</span><span>↑</span>`;button.addEventListener('click',()=>{selectDay(index);document.querySelector('#schedule').scrollIntoView({behavior:'smooth'})});linkRoot.appendChild(button)});
+days.forEach((day,index)=>{const button=document.createElement('button');button.type='button';button.className='overview-day-link';button.innerHTML=`<span>D${index+1} · ${escapeHtml(day.city)}</span><span>↑</span>`;button.addEventListener('click',()=>{selectDay(index);(window.matchMedia('(max-width:760px)').matches?content:document.querySelector('#schedule')).scrollIntoView({behavior:'smooth',block:'start'})});linkRoot.appendChild(button)});

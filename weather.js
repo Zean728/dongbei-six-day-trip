@@ -3,13 +3,12 @@ const weatherPlaces = [
   {id:'changchun',name:'长春',lat:43.9033,lon:125.3245},
   {id:'yanji',name:'延吉',lat:42.904,lon:129.49},
   {id:'songjianghe',name:'松江河',lat:42.164976,lon:127.483243},
-  {id:'jiuxi',name:'九溪听泉周边',lat:42.380653,lon:128.136245},
   {id:'north',name:'二道白河 · 北坡山下',lat:42.418448,lon:128.127078},
   {id:'tianchi',name:'天池附近 · 山上',lat:42.005868,lon:128.055015}
 ];
 const dayWeatherPlaces = [
   ['changchun'], ['yanji'], ['yanji','songjianghe'],
-  ['jiuxi'], ['north','tianchi'], ['north','yanji']
+  ['songjianghe'], ['north','tianchi'], ['north','yanji']
 ];
 const weatherDates = ['2026-10-01','2026-10-02','2026-10-03','2026-10-04','2026-10-05','2026-10-06'];
 let weatherData = null;
@@ -64,7 +63,7 @@ function renderDayWeather(dayIndex) {
     return `<div class="weather-place"><div class="weather-place-head"><span class="weather-icon" aria-hidden="true">${icon}</span><div><strong>${place.name}</strong><small>${condition}</small></div></div><b class="weather-temp">${weatherDegrees(low)}～${weatherDegrees(high)}°C</b><div class="weather-metrics"><span>最高降水概率 ${Number.isFinite(rain)?Math.round(rain)+'%':'暂无'}</span><span>最大风速 ${Number.isFinite(wind)?Math.round(wind)+' km/h':'暂无'}</span></div></div>`;
   }).filter(Boolean).join(''):'';
   const message=cards?'':weatherLoading?'正在获取目的地天气…':'目前没有这一天的可靠预报；请稍后刷新。';
-  const notice=dayIndex===3?'漂流是否开放以景区当天公告为准。':dayIndex===4?'天池附近为模型网格预报，实际风雪和主峰开放以景区公告为准。':'';
+  const notice=dayIndex===3?'汉拿山温泉营业时段以商家当天公告为准。':dayIndex===4?'天池附近为模型网格预报，实际风雪和主峰开放以景区公告为准。':'';
   const timeText=weatherUpdatedAt&&cards?`${weatherSource==='实时预报'?'在线读取于':'快照生成于'} ${chinaTime(new Date(weatherUpdatedAt))}`:'天气预报';
   block.innerHTML=`<div class="weather-title"><div><span>DESTINATION WEATHER</span><h4>目的地天气 · ${date.slice(5).replace('-','.')}</h4></div><button type="button" id="weatherRefresh" ${weatherLoading?'disabled':''}>${weatherLoading?'更新中…':'刷新天气'}</button></div>${cards?`<div class="weather-grid">${cards}</div>`:`<p class="weather-empty">${message}</p>`}${notice?`<p class="weather-notice">${notice}</p>`:''}<p class="weather-foot">${timeText} · <a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener">Open-Meteo 数据</a>；预报会变化，出发前再看。</p>`;
 }

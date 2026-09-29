@@ -22,9 +22,10 @@ const dayMapPoints = [
     {stops:[4,5],name:'长白山璞宣酒店 · 松江河镇',coord:[127.483243,42.164976],amap:{id:'B0L1LHF1MI',coord:[127.489261,42.167344],address:'白山市抚松县松江河镇松山街108号'}}
   ],
   [
-    {stops:[0,5],name:'长白山璞宣酒店 · 松江河镇',coord:[127.483243,42.164976],amap:{id:'B0L1LHF1MI',coord:[127.489261,42.167344],address:'白山市抚松县松江河镇松山街108号'}},
-    {stops:[1,2],name:'九溪听泉景区 · 漂流入口需现场确认',coord:[128.136245,42.380653],amap:{id:'B0L17H998S',coord:[128.142414,42.383142],address:'长白山九溪秘境人参采挖园西北侧'}},
-    {stops:[4],name:'美人松空中廊桥公园 · 可选',coord:[128.1098211,42.4342959]}
+    {stops:[0,6],name:'长白山璞宣酒店 · 松江河镇',coord:[127.483243,42.164976],amap:{id:'B0L1LHF1MI',coord:[127.489261,42.167344],address:'白山市抚松县松江河镇松山街108号'}},
+    {stops:[1],name:'讷殷古城',coord:[127.557883,41.975788],amap:{id:'B0FFLA7M4B',coord:[127.563641,41.977996],address:'长白山池南区302省道与漫江交汇处'}},
+    {stops:[2,3,5],name:'万达度假区 · 佛库伦湖在园内',coord:[127.490272,42.103911],amap:{id:'B01B70M0Y0',coord:[127.496277,42.106282],address:'抚松县松江河镇白云路455号'},approx:true},
+    {stops:[4],name:'长白山汉拿山温泉',coord:[127.508115,42.104496],amap:{id:'B0IA17XI2V',coord:[127.514051,42.106814],address:'万达国际度假区南区白云路455号'}}
   ],
   [
     {stops:[0],name:'长白山璞宣酒店 · 松江河镇',coord:[127.483243,42.164976],amap:{id:'B0L1LHF1MI',coord:[127.489261,42.167344],address:'白山市抚松县松江河镇松山街108号'}},
@@ -77,34 +78,17 @@ function gaodeEmbedUrl(point) {
   return 'https://www.amap.com/ssr/embed/place?'+params.toString();
 }
 
-function gaodeNavigationUrl(point,mode) {
+function gaodePlaceUrl(point) {
+  const common={src:'dongbei-six-day-trip',callnative:'1'};
+  if(point.amap?.id) return 'https://uri.amap.com/poidetail?'+new URLSearchParams({poiid:point.amap.id,...common});
   const location=point.amap?.coord || wgsToGcj(...point.coord);
   const params=new URLSearchParams({
-    to:`${location[0].toFixed(6)},${location[1].toFixed(6)},${point.name}`,
-    mode,
-    src:'dongbei-six-day-trip',
-    callnative:'0'
+    position:`${location[0].toFixed(6)},${location[1].toFixed(6)}`,
+    name:point.name,
+    coordinate:'gaode',
+    ...common
   });
-  return 'https://uri.amap.com/navigation?'+params.toString();
-}
-
-function mobileGaodePlatform() {
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'iosamap' : /Android/i.test(navigator.userAgent) ? 'androidamap' : null;
-}
-
-function gaodeAppNavigationUrl(point) {
-  const location=point.amap?.coord || wgsToGcj(...point.coord);
-  const params=new URLSearchParams({
-    sourceApplication:'东北六日路书',
-    poiname:point.name,
-    lat:location[1].toFixed(6),
-    lon:location[0].toFixed(6),
-    dev:'0',
-    style:'0'
-  });
-  if(point.amap?.id) params.set('poiid',point.amap.id);
-  const platform=mobileGaodePlatform();
-  return platform ? `${platform}://navi?${params}` : gaodeNavigationUrl(point,'car');
+  return 'https://uri.amap.com/marker?'+params;
 }
 
 function selectGaodePoint(pointIndex) {
@@ -114,16 +98,7 @@ function selectGaodePoint(pointIndex) {
   if(iframe.src!==url) iframe.src=url;
   iframe.title='高德地图：'+point.name;
   document.querySelector('#selectedPointName').textContent=point.name;
-  const directLink=document.querySelector('#driveNavigation');
-  directLink.href=gaodeAppNavigationUrl(point);
-  directLink.hidden=!mobileGaodePlatform();
-  document.querySelector('#routePreview').href=gaodeNavigationUrl(point,'car');
-  document.querySelector('#walkNavigation').href=gaodeNavigationUrl(point,'walk');
-  const ridePlaceName=point.name.split(' · ')[0];
-  const rideDestination=point.amap?.address ? `${ridePlaceName} ${point.amap.address}` : ridePlaceName;
-  document.querySelector('#didiRide').dataset.destination=rideDestination;
-  document.querySelector('#didiWeb').dataset.destination=rideDestination;
-  document.querySelector('#didiStatus').textContent='';
+  document.querySelector('#openGaodePlace').href=gaodePlaceUrl(point);
   document.querySelectorAll('.point-chip').forEach((button,index)=>button.setAttribute('aria-pressed',index===pointIndex?'true':'false'));
 }
 
