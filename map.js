@@ -9,6 +9,7 @@ const dayMapPoints = [
   ],
   [
     {stops:[0],name:'延吉西站 · 按实际车票确认',coord:[129.4078446,42.9017577]},
+    {stops:[1],name:'张师傅参鸡汤 · 新华街总店',coord:[129.5037931,42.9007138],amap:{id:'B05990MXSB',coord:[129.510744,42.903192],address:'延吉市新华街195号附近'}},
     {stops:[],name:'延吉延边大学网红墙梨花路亚朵酒店',coord:[129.482342,42.902643],amap:{id:'B0LB2ZM3L1',coord:[129.489346,42.905166],address:'梨花路1555号天池首府9号楼'}},
     {stops:[2],name:'延边博物馆',coord:[129.4164678,42.8877268]},
     {stops:[3],name:'延吉西市场',coord:[129.5008938,42.9040206]},
@@ -42,7 +43,7 @@ const dayMapPoints = [
     {stops:[3,4,5],name:'延吉朝阳川国际机场 · 机场还车',coord:[129.4500775,42.8828625]}
   ]
 ];
-const defaultPointIndex = [1,1,1,1,0,0];
+const defaultPointIndex = [1,2,1,1,0,0];
 
 let activeDayMap = null;
 let activeMapMarkers = [];
