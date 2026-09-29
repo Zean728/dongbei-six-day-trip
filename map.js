@@ -8,13 +8,15 @@ const dayMapPoints = [
     {stops:[4],name:'这有山',coord:[125.286175,43.8645734]}
   ],
   [
-    {stops:[0],name:'延吉西站 · 按实际车票确认',coord:[129.4078446,42.9017577]},
-    {stops:[1],name:'张师傅参鸡汤 · 新华街总店',coord:[129.5037931,42.9007138],amap:{id:'B05990MXSB',coord:[129.510744,42.903192],address:'延吉市新华街195号附近'}},
-    {stops:[],name:'延吉延边大学网红墙梨花路亚朵酒店',coord:[129.482342,42.902643],amap:{id:'B0LB2ZM3L1',coord:[129.489346,42.905166],address:'梨花路1555号天池首府9号楼'}},
-    {stops:[2],name:'延边博物馆',coord:[129.4164678,42.8877268]},
-    {stops:[3],name:'延吉西市场',coord:[129.5008938,42.9040206]},
-    {stops:[4],name:'延边大学 · 网红墙周边',coord:[129.4809001,42.9100364],approx:true},
-    {stops:[5],name:'震海贝烤贝 · 海鲜街门店',coord:[129.509173,42.912121],amap:{id:'B0FFFN4L9G',coord:[129.516082,42.914568],address:'延边一中西门海鲜街'}}
+    {stops:[0],name:'长春吾悦广场景阳大路亚朵见野酒店',coord:[125.267636,43.881793],amap:{id:'B0L12CUAOP',coord:[125.274041,43.884131],address:'景阳大路吴中豪仕广场B区二期2幢1层'}},
+    {stops:[1],name:'长春站 · 火车站',coord:[125.3181208,43.9088926],amap:{id:'B01AF0ZDGL',coord:[125.324627,43.911282],address:'长春市宽城区长白路5号'}},
+    {stops:[2],name:'延吉西站 · 出站口',coord:[129.4067702,42.9016402],amap:{id:'B0FFGZJABL',coord:[129.413933,42.904312],address:'延吉市延三公路北100米'}},
+    {stops:[3],name:'延吉延边大学网红墙梨花路亚朵酒店',coord:[129.482342,42.902643],amap:{id:'B0LB2ZM3L1',coord:[129.489346,42.905166],address:'梨花路1555号天池首府9号楼'}},
+    {stops:[4],name:'张师傅参鸡汤 · 新华街总店',coord:[129.5037931,42.9007138],amap:{id:'B05990MXSB',coord:[129.510744,42.903192],address:'延吉市新华街195号附近'}},
+    {stops:[5],name:'延边博物馆',coord:[129.4164678,42.8877268]},
+    {stops:[6],name:'延边大学延吉校区 · 南门',coord:[129.4856574,42.9055483],amap:{id:'B0FFFN46OG',coord:[129.492674,42.908082],address:'延吉市公园路977号'}},
+    {stops:[7],name:'延边大学网红弹幕墙',coord:[129.4845125,42.9048922],amap:{id:'B0J1MLWJAW',coord:[129.491533,42.907429],address:'延吉市公园路延边大学南门对面'}},
+    {stops:[8],name:'震海贝烤贝 · 海鲜街门店',coord:[129.509173,42.912121],amap:{id:'B0FFFN4L9G',coord:[129.516082,42.914568],address:'延边一中西门海鲜街'}}
   ],
   [
     {stops:[0],name:'延吉西市场',coord:[129.5008938,42.9040206]},
@@ -43,7 +45,7 @@ const dayMapPoints = [
     {stops:[3,4,5],name:'延吉朝阳川国际机场 · 机场还车',coord:[129.4500775,42.8828625]}
   ]
 ];
-const defaultPointIndex = [1,2,1,1,0,0];
+const defaultPointIndex = [1,0,1,1,0,0];
 
 let activeDayMap = null;
 let activeMapMarkers = [];
