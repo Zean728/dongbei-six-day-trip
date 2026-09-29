@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#102638">
+  <meta name="description" content="四人同行的长春、延吉、长白山六日路书。每日行程、天气、地图、餐饮建议和预约提醒一页查看。">
+  <title>东北六日 · 四人路书</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23102638'/%3E%3Cpath d='M10 46 28 16l8 14 6-9 13 25Z' fill='%23f0b36d'/%3E%3Cpath d='M10 46h45' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./map.css">
+  <link rel="stylesheet" href="./maplibre-gl.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner"><a class="brand" href="#top">↗ 东北六日</a><span class="top-meta">10.01—10.06 · 4 人同行</span></div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-label="行程概览">
+      <div class="hero-copy">
+        <div class="eyebrow">CHANGCHUN · YANJI · CHANGBAISHAN</div>
+        <h1>去东北，<br><em>慢慢走。</em></h1>
+        <p>长春进，延吉出。先吃好、逛好，再上长白山。</p>
+        <div class="hero-route"><span>杭州</span><i></i><span>长春</span><i></i><span>延吉</span><i></i><span>松江河</span><i></i><span>延吉</span></div>
+      </div>
+      <div class="hero-image"><img src="./changbai-art.png" alt="长白山秋色主题插画"><span>长白山主题插画 · 非实景照片</span></div>
+    </section>
+
+    <section class="notice wrap" aria-label="出行前提醒">
+      <div class="notice-label">最新进展</div>
+      <div><strong>10.03–10.05 住璞宣 · 10.05–10.06 住北坡云顶市集亚朵</strong><p>D5 北坡票已购：从松江河退房后带行李去北坡，晚上住二道白河，不再折返。九溪听泉 10 月 4 日是否营业仍需确认。</p></div>
+      <a href="https://www.changbaishan.gov.cn/" target="_blank" rel="noopener">景区信息 ↗</a>
+    </section>
+
+    <section class="days wrap" id="schedule">
+      <div class="section-heading"><div><span class="kicker">THE PLAN</span><h2>六天行程</h2></div><p>时间是建议节奏；车次、营业与天气出发前再确认。</p></div>
+      <nav class="day-nav" aria-label="选择行程日期" id="dayNav"></nav>
+      <div id="dayContent" class="day-content" aria-live="polite"></div>
+    </section>
+
+    <section class="map-section wrap" id="map-section">
+      <div class="section-heading"><div><span class="kicker">THE BIG PICTURE</span><h2>跨城路线示意</h2></div><p>可缩放的实际街道地图已放在上方每天的行程卡中。</p></div>
+      <div class="map-shell">
+        <div class="route-map" role="img" aria-label="路线示意：从长春到延吉，再去松江河住两晚，十月五日转住北坡，最后从二道白河返回延吉。">
+          <svg viewBox="0 0 700 430" aria-hidden="true" focusable="false">
+            <defs><pattern id="mapgrid" width="55" height="55" patternUnits="userSpaceOnUse"><path d="M55 0H0V55" fill="none" stroke="#cad8d4" stroke-width="1"/></pattern><linearGradient id="mapbg" x2="1" y2="1"><stop stop-color="#e5efea"/><stop offset="1" stop-color="#f4f4e9"/></linearGradient></defs>
+            <rect width="700" height="430" fill="url(#mapbg)"/><rect width="700" height="430" fill="url(#mapgrid)" opacity=".42"/>
+            <path class="contour" d="M270 430c35-95 78-114 116-165 56-75 75-104 158-126 63-17 120-46 156-112M324 430c8-63 46-100 92-140 40-36 63-88 122-112 61-26 115-24 162-47M390 430c39-89 108-124 145-172 42-56 98-68 165-81"/>
+            <text x="78" y="220" class="region">吉 林 省</text><text x="506" y="83" class="region small">延 边</text><text x="276" y="389" class="region small">长白山脉</text>
+            <path class="route-path" d="M115 108 Q305 76 535 174 Q410 230 250 350 Q330 320 368 305 Q440 220 535 174"/>
+            <g class="map-place" transform="translate(115 108)"><circle r="18"/><text y="5" text-anchor="middle">1</text><text x="28" y="-8" class="name">长春</text><text x="28" y="11" class="sub">D1 入境</text></g>
+            <g class="map-place" transform="translate(535 174)"><circle r="18"/><text y="5" text-anchor="middle">2</text><text x="28" y="-8" class="name">延吉</text><text x="28" y="11" class="sub">D2–3 / D6</text></g>
+            <g class="map-place" transform="translate(250 350)"><circle r="18"/><text y="5" text-anchor="middle">3</text><text x="-28" y="-19" text-anchor="end" class="name">松江河</text><text x="-28" y="0" text-anchor="end" class="sub">D3–4 住宿</text></g>
+            <g class="map-place peak" transform="translate(368 305)"><circle r="18"/><text y="5" text-anchor="middle">4</text><text x="28" y="-8" class="name">长白山北坡</text><text x="28" y="11" class="sub">D5 上山＋住宿</text></g>
+          </svg>
+          <span class="map-caption">行程总览 · 标点与曲线为示意，非导航轨迹</span>
+        </div>
+        <div class="map-aside"><strong>每天的地图</strong><div id="mapLinks"></div><small>上方行程卡可缩放、拖动并点选景点。地图连线仅表示站点顺序，不代表实际道路；驾车请遵守实时路况与道路管制。</small></div>
+      </div>
+    </section>
+
+    <section class="notes wrap" id="notes">
+      <div class="section-heading"><div><span class="kicker">BEFORE YOU GO</span><h2>出发前核对</h2></div></div>
+      <div class="note-grid">
+        <article><span>01 / 票</span><h3>北坡门票已购</h3><p>核对 10 月 5 日检票时段及天池主峰车票；天池仍可能因天气临时关闭。</p></article>
+        <article><span>02 / 车</span><h3>延吉取还车</h3><p>确认 10 月 3 日 13:00 取车、10 月 6 日 13:00 还车的门店地址、异地/超时规则及四人行李空间。</p></article>
+        <article><span>03 / 玩</span><h3>九溪漂流 + 民俗园写真</h3><p>确认 10 月 4 日漂流恢复运营、预约时段；民俗园妆造和摄影也提前约，13:30 到店。</p></article>
+        <article><span>04 / 返</span><h3>D6 两种走法</h3><p>从北坡酒店直返机场建议 08:30 出发；军舰山＋南坪绕行建议 05:30 起床、06:00 出发，并执行撤退时间。</p></article>
+      </div>
+    </section>
+
+    <section class="sources wrap" id="sources">
+      <h2>资料与核对</h2><p>10 月 3–5 日住璞宣酒店（松江河镇松山街 108 号），10 月 5–6 日住云顶市集亚朵（二道白河镇天池街 138 号）；位置已按高德核对。餐馆沿用你们指定的店，营业、排队和门店位置以当天平台页面为准。</p>
+      <div class="source-links">
+        <a target="_blank" rel="noopener" href="https://www.changbaishan.gov.cn/">长白山官方 ↗</a>
+        <a target="_blank" rel="noopener" href="https://www.amap.com/place/B0L1LHF1MI">高德·璞宣酒店 ↗</a>
+        <a target="_blank" rel="noopener" href="https://www.amap.com/place/B0MD1DRNC2">高德·云顶市集亚朵 ↗</a>
+        <a target="_blank" rel="noopener" href="https://webapp.didi.cn/">滴滴出行叫车页 ↗</a>
+        <a target="_blank" rel="noopener" href="https://open-meteo.com/en/docs">Open-Meteo 天气数据 ↗</a>
+        <a target="_blank" rel="noopener" href="https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/gdxl/ybz/yjs/202506/t20250625_9264370.html">吉林文旅·延吉线路 ↗</a>
+        <a target="_blank" rel="noopener" href="https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/zzgtyjl/202505/t20250523_9238749.html">吉林文旅·二道白河线路 ↗</a>
+        <a target="_blank" rel="noopener" href="https://cbsedbhmzjq.com/">二道白河名镇景区 ↗</a>
+        <a target="_blank" rel="noopener" href="https://www.changbaishan.gov.cn/zwgk/zwdt/zbsyw/202602/t20260202_269627.html">九溪听泉景区介绍 ↗</a>
+        <a target="_blank" rel="noopener" href="https://m.sohu.com/a/1073341076_121124778/">九溪漂流停运通知 ↗</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><strong>东北六日 · 四人路书</strong><span>愿一路好天气，也一路好胃口。</span></div></footer>
+  <script src="./maplibre-gl.js"></script>
+  <script src="./map.js"></script>
+  <script src="./weather.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
