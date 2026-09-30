@@ -186,10 +186,10 @@ function mountDayMap(dayIndex) {
   document.querySelector('#mapReset').addEventListener('click',fitDayMap);
 }
 
-function focusDayPointByIndex(index) {
+function focusDayPointByIndex(index,scrollToMap=true) {
   const point=dayMapPoints[activeDayIndex][index];
   selectGaodePoint(index);
-  document.querySelector('#daily-map-block').scrollIntoView({behavior:'smooth',block:'center'});
+  if(scrollToMap) document.querySelector('#daily-map-block').scrollIntoView({behavior:'smooth',block:'start'});
   if(activeMapMode==='gaode' || !activeDayMap) return;
   activeDayMap.flyTo({center:point.coord,zoom:Math.max(activeDayMap.getZoom(),13),duration:550});
   activeMapMarkers[index].togglePopup();
