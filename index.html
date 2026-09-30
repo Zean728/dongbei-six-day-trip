@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./style.css?v=20260929b">
   <link rel="stylesheet" href="./map.css?v=20260929j">
   <link rel="stylesheet" href="./maplibre-gl.css">
+  <link rel="stylesheet" href="./scenes.css?v=20260930a">
 </head>
 <body>
   <header class="topbar">
@@ -17,7 +18,7 @@
   </header>
 
   <main id="top">
-    <section class="hero wrap" aria-label="行程概览">
+    <section class="hero wrap journey-scene scene-intro" id="intro" data-scene="intro" aria-label="第一页：去东北，慢慢走">
       <div class="hero-copy">
         <div class="eyebrow">CHANGCHUN · YANJI · CHANGBAISHAN</div>
         <h1>去东北，<br><em>慢慢走。</em></h1>
@@ -25,21 +26,26 @@
         <div class="hero-route"><span>杭州</span><i></i><span>长春</span><i></i><span>延吉</span><i></i><span>松江河</span><i></i><span>延吉</span></div>
       </div>
       <div class="hero-image"><img src="./changbai-art.png" alt="长白山秋色主题插画"><span>长白山主题插画 · 非实景照片</span></div>
+      <a class="scene-next intro-next" href="#schedule"><span>向上滑动，开始这一程</span><b aria-hidden="true">↓</b></a>
     </section>
 
-    <section class="notice wrap" aria-label="出行前提醒">
+
+
+    <section class="days wrap journey-scene scene-plan" id="schedule" data-scene="plan">
+      <div class="scene-number">02 / 03 · 六天行程</div>
+      <div class="section-heading"><div><span class="kicker">THE PLAN</span><h2>六天行程</h2></div><p>时间是建议节奏；车次、营业与天气出发前再确认。</p></div>
+    <section class="notice" aria-label="出行前提醒">
       <div class="notice-label">最新进展</div>
       <div><strong>10.03–10.05 住璞宣 · 10.05–10.06 住北坡云顶市集亚朵</strong><p>D4 在松江河周边逛古城、湖边并泡汉拿山温泉；D5 已抢到 12:00 长白山票，先到二道白河放行李，再按时段上北坡。</p></div>
       <a href="https://www.changbaishan.gov.cn/" target="_blank" rel="noopener">景区信息 ↗</a>
     </section>
-
-    <section class="days wrap" id="schedule">
-      <div class="section-heading"><div><span class="kicker">THE PLAN</span><h2>六天行程</h2></div><p>时间是建议节奏；车次、营业与天气出发前再确认。</p></div>
       <nav class="day-nav" aria-label="选择行程日期" id="dayNav"></nav>
       <div id="dayContent" class="day-content" aria-live="polite"></div>
+      <a class="scene-next plan-next" href="#map-section"><span>行程看完了，继续滑动查看跨城路线</span><b aria-hidden="true">↓</b></a>
     </section>
 
-    <section class="map-section wrap" id="map-section">
+    <section class="map-section wrap journey-scene scene-route" id="map-section" data-scene="route">
+      <div class="scene-number">03 / 03 · 路线总览</div>
       <div class="section-heading"><div><span class="kicker">THE BIG PICTURE</span><h2>跨城路线示意</h2></div><p>可缩放的实际街道地图已放在上方每天的行程卡中。</p></div>
       <div class="map-shell">
         <div class="route-map" role="img" aria-label="路线示意：从长春到延吉，再去松江河住两晚，十月五日转住北坡，最后从二道白河返回延吉。">
@@ -58,13 +64,16 @@
         </div>
         <div class="map-aside"><strong>每天的地图</strong><div id="mapLinks"></div><small>上方行程卡可缩放、拖动并点选景点。地图连线仅表示站点顺序，不代表实际道路；驾车请遵守实时路况与道路管制。</small></div>
       </div>
+      <a class="scene-back" href="#schedule">↑ 回到六天行程</a>
     </section>
 
   </main>
+  <nav class="scene-pagination" aria-label="选择页面"><a href="#intro" aria-label="第一页：去东北，慢慢走" aria-current="page"><i></i><span>出发</span></a><a href="#schedule" aria-label="第二页：六天行程"><i></i><span>行程</span></a><a href="#map-section" aria-label="第三页：跨城路线"><i></i><span>路线</span></a></nav>
   <footer class="footer"><div class="wrap"><strong>东北六日 · 四人路书</strong><span>愿一路好天气，也一路好胃口。</span></div></footer>
   <script src="./maplibre-gl.js"></script>
   <script src="./map.js?v=20260929j"></script>
   <script src="./weather.js?v=20260929b"></script>
   <script src="./script.js?v=20260929j"></script>
+  <script src="./scenes.js?v=20260930a"></script>
 </body>
 </html>
